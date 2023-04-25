@@ -182,10 +182,10 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task DeleteAsync(int id, string endpoint)
+        public async Task DeleteAsync(string id, string endpoint)
         {
             HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/" + id.ToString());
+                await client.DeleteAsync(endpoint + "/" + id);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -389,7 +389,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             }
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             if (hasSignalR)
             {
@@ -410,7 +410,6 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             }
 
         }
-
 
     }
 }

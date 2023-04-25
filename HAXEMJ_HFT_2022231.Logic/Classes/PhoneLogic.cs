@@ -71,7 +71,7 @@ namespace HAXEMJ_HFT_2022231.Logic.Classes
                    where x.Manufacturer.Name == "Apple"
                    select new Phone
                    {
-                       PhoneId = x.PhoneId,
+                       Id = x.Id,
                        Name = x.Name
                    };
         }
@@ -139,7 +139,7 @@ namespace HAXEMJ_HFT_2022231.Logic.Classes
                    where x.Manufacturer.Location == company
                    select new Phone
                    {
-                       PhoneId = x.PhoneId,
+                       Id = x.Id,
                        Name = x.Name
                    };
         }

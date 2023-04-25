@@ -6,11 +6,11 @@ using System.Text.Json.Serialization;
 
 namespace HAXEMJ_HFT_2022231.Models
 {
-    public class Manufacturer
+    public class Manufacturer 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ManufacturerId { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(240)]
@@ -31,7 +31,7 @@ namespace HAXEMJ_HFT_2022231.Models
         public Manufacturer(string data)
         {
             string[] temp = data.Split('#');
-            ManufacturerId = temp[0];
+            Id = temp[0];
             Name = temp[1];
             Location = temp[2];
         }
@@ -39,7 +39,7 @@ namespace HAXEMJ_HFT_2022231.Models
         public override bool Equals(object obj)
         {
             Manufacturer m = obj as Manufacturer;
-            if (m != null && this.ManufacturerId == m.ManufacturerId &&
+            if (m != null && this.Id == m.Id &&
                 this.Name == m.Name &&
                 this.ColorPhoneCount == m.ColorPhoneCount) return true;
 

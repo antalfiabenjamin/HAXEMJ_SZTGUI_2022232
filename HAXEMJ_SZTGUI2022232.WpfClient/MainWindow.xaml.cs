@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HAXEMJ_SZTGUI2022232.WpfClient.ViewModels;
+using HAXEMJ_HFT_2022231.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +25,6 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
         public MainWindow()
         {
             InitializeComponent();
-
-            tableOptions.Items.Add("Phones");
-            tableOptions.Items.Add("Manufacturers");
-            tableOptions.Items.Add("Users");
         }
     }
 }

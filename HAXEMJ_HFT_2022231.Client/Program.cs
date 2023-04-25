@@ -66,7 +66,7 @@ namespace HAXEMJ_HFT_2022231.Client
                 string location = Console.ReadLine();
                 List<Phone> phones = rest.Get<Phone>($"NonCrud/PhonesBySpecificLocation/{location}");
 
-                phones.ForEach(p => Console.WriteLine($"{p.PhoneId}: {p.Name}"));
+                phones.ForEach(p => Console.WriteLine($"{p.Id}: {p.Name}"));
                 Console.ReadLine();
             }
             catch (Exception e) { Console.WriteLine(e.Message); Console.ReadLine(); }      
@@ -107,21 +107,21 @@ namespace HAXEMJ_HFT_2022231.Client
                         List<Phone> phones = rest.Get<Phone>(entity.ToLower());
                         foreach (var item in phones)
                         {
-                            Console.WriteLine(item.PhoneId + ": " + item.Name);
+                            Console.WriteLine(item.Id + ": " + item.Name);
                         }
                         break;
                     case "User":
                         List<User> users = rest.Get<User>(entity.ToLower());
                         foreach (var item in users)
                         {
-                            Console.WriteLine(item.UserID + ": " + item.Name);
+                            Console.WriteLine(item.Id + ": " + item.Name);
                         }
                         break;
                     case "Manufacturer":
                         List<Manufacturer> manufacturers = rest.Get<Manufacturer>(entity.ToLower());
                         foreach (var item in manufacturers)
                         {
-                            Console.WriteLine(item.ManufacturerId + ": " + item.Name);
+                            Console.WriteLine(item.Id + ": " + item.Name);
                         }
                         break;
                 }

@@ -15,11 +15,11 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Phones}" SelectedItem="{Binding SelectedPhone}" Grid.Column="0">
+        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Grid.Column="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Label Content="{Binding PhoneId}"/>
+                        <Label Content="{Binding Id}"/>
                         <Label Content="{Binding Name}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -28,16 +28,15 @@
 
         <StackPanel Grid.Column="1">
             <StackPanel Grid.Column="1">
-                <TextBox Text="{Binding SelectedPhone.Name}"  Padding="10" Margin="5"/>
+                <TextBox Text="{Binding SelectedItem.Name}"  Padding="10" Margin="5"/>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
-                <Button Content="Create" Padding="5" Margin="5" Width="200" Command="{Binding CreatePhoneCommand}"/>
-                <Button Content="Delete" Padding="5" Margin="5" Width="200" Command="{Binding DeletePhoneCommand}"/>
-                <Button Content="Update" Padding="5" Margin="5" Width="200" Command="{Binding UpdatePhoneCommand}"/>
+                <Button Content="Create" Padding="5" Margin="5" Width="200" Command="{Binding CreateCommand}"/>
+                <Button Content="Delete" Padding="5" Margin="5" Width="200" Command="{Binding DeleteCommand}"/>
+                <Button Content="Update" Padding="5" Margin="5" Width="200" Command="{Binding UpdateCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Non Crud" Margin="5"/>
-                <ComboBox x:Name="tableOptions" SelectedItem="{Binding SelectedTable}" Margin="5" SelectedIndex="0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

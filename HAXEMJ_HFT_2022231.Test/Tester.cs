@@ -68,17 +68,17 @@ namespace HAXEMJ_HFT_2022231.Test
             {
                 new Phone()
                 {
-                    PhoneId = 1,
+                    Id = 1,
                     Name = "iPhone 14",
                 },
                 new Phone()
                 {
-                    PhoneId = 2,
+                    Id = 2,
                     Name = "iPhone 12",
                 },
                 new Phone()
                 {
-                    PhoneId = 3,
+                    Id = 3,
                     Name = "iPhone 12",
                 }
             };
@@ -147,17 +147,17 @@ namespace HAXEMJ_HFT_2022231.Test
             {
                 new Phone()
                 {
-                    PhoneId = 1,
+                    Id = 1,
                     Name = "iPhone 14"
                 },
                 new Phone()
                 {
-                    PhoneId = 2,
+                    Id = 2,
                     Name = "iPhone 12"
                 },
                 new Phone()
                 {
-                    PhoneId = 3,
+                    Id = 3,
                     Name = "iPhone 12"
                 }
             };

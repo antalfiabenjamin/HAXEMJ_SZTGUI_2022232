@@ -15,7 +15,7 @@ namespace HAXEMJ_HFT_2022231.Repository.ModelRepos
 
         public override Manufacturer Read(string id)
         {
-            return ctx.Manufacturer.FirstOrDefault(t => t.ManufacturerId == id);
+            return ctx.Manufacturer.FirstOrDefault(t => t.Id == id);
         }
 
         public override Manufacturer Read(int id)
@@ -25,7 +25,7 @@ namespace HAXEMJ_HFT_2022231.Repository.ModelRepos
 
         public override void Update(Manufacturer item)
         {
-            var old = Read(item.ManufacturerId);
+            var old = Read(item.Id);
             PropertyInfo[] propInf = old.GetType().GetProperties();
 
             foreach (var prop in propInf)

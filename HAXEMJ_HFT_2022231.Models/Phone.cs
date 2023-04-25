@@ -9,7 +9,7 @@ namespace HAXEMJ_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PhoneId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(240)]
@@ -37,7 +37,7 @@ namespace HAXEMJ_HFT_2022231.Models
         public Phone(string data)
         {
             string[] temp = data.Split('#');
-            PhoneId = int.Parse(temp[0]);
+            Id = int.Parse(temp[0]);
             Name = temp[1];
             Color = temp[2];
             ManufacturerID = temp[3];
@@ -49,7 +49,7 @@ namespace HAXEMJ_HFT_2022231.Models
         {
             Phone p = obj as Phone;
             if (p != null && this.Name == p.Name &&
-                this.PhoneId == p.PhoneId) return true;
+                this.Id == p.Id) return true;
 
             if (p == null) return false;
 

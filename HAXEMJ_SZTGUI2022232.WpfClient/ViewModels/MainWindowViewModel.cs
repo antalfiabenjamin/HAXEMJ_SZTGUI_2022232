@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using HAXEMJ_HFT_2022231.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,23 +15,23 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        public RestCollection<Phone> Phones { get; set; }
-        private Phone selectedPhone;
+        public RestCollection<Manufacturer> Items { get; set; }
+        private Manufacturer selectedItem;
 
-        public Phone SelectedPhone
+        public Manufacturer SelectedItem
         {
-            get { return selectedPhone; }
+            get { return selectedItem; }
             set
             {
                 if (value != null)
                 {
-                    selectedPhone = new Phone()
+                    selectedItem = new Manufacturer()
                     {
                         Name = value.Name,
-                        PhoneId = value.PhoneId,
+                        Id = value.Id,
                     };
                     OnPropertyChanged();
-                    (DeletePhoneCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -43,10 +44,9 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
             set { SetProperty(ref selectedTable, value); }
         }
 
-
-        public ICommand CreatePhoneCommand { get; set; }
-        public ICommand DeletePhoneCommand { get; set; }
-        public ICommand UpdatePhoneCommand { get; set; }
+        public ICommand CreateCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
         public static bool IsInDesignMode
         {
@@ -60,23 +60,23 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Phones = new RestCollection<Phone>("http://localhost:29971/", "phone");
-                CreatePhoneCommand = new RelayCommand(
-                    () => Phones.Add(new Phone() { Name = SelectedPhone?.Name })
+                Items = new RestCollection<Manufacturer>("http://localhost:29971/", "manufacturer");
+                CreateCommand = new RelayCommand(
+                    () => Items.Add(new Manufacturer() { Name = SelectedItem?.Name })
                 );
 
-                DeletePhoneCommand = new RelayCommand(
+                DeleteCommand = new RelayCommand(
                     () =>
                     {
-                        Phones.Delete(SelectedPhone.PhoneId);
+                        Items.Delete(SelectedItem.Id.ToString());
                     },
-                    () => SelectedPhone != null
+                    () => SelectedItem != null
                 );
 
-                UpdatePhoneCommand = new RelayCommand(
-                    () => Phones.Update(SelectedPhone)
+                UpdateCommand = new RelayCommand(
+                    () => Items.Update(SelectedItem)
                 );
-                SelectedPhone = new Phone();
+                SelectedItem = new Manufacturer();
             }
         }
     }

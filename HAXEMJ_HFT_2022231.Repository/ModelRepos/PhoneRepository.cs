@@ -15,7 +15,7 @@ namespace HAXEMJ_HFT_2022231.Repository.ModelRepos
 
         public override Phone Read(int id)
         {
-            return ctx.Phones.FirstOrDefault(t => t.PhoneId == id);
+            return ctx.Phones.FirstOrDefault(t => t.Id == id);
         }
 
         public override Phone Read(string id)
@@ -25,7 +25,7 @@ namespace HAXEMJ_HFT_2022231.Repository.ModelRepos
 
         public override void Update(Phone item)
         {
-            var old = Read(item.PhoneId);
+            var old = Read(item.Id);
             PropertyInfo[] propInf = old.GetType().GetProperties();
 
             foreach (var prop in propInf)

@@ -6,11 +6,11 @@ using System.Text.Json.Serialization;
 
 namespace HAXEMJ_HFT_2022231.Models
 {
-    public class User
+    public class User 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(240)]
@@ -30,14 +30,14 @@ namespace HAXEMJ_HFT_2022231.Models
         public User(string data)
         {
             string[] temp = data.Split('#');
-            UserID = int.Parse(temp[0]);
+            Id = int.Parse(temp[0]);
             Name = temp[1];
         }
 
         public override bool Equals(object obj)
         {
             User u = obj as User;
-            if (u != null && this.UserID == u.UserID &&
+            if (u != null && this.Id == u.Id &&
                 this.Name == u.Name &&
                 this.TotalAvgScrTime == u.TotalAvgScrTime &&
                 this.PhoneCount == u.PhoneCount) return true;
