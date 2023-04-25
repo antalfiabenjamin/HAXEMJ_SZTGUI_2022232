@@ -23,6 +23,10 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
         public MainWindow()
         {
             InitializeComponent();
+
+            tableOptions.Items.Add("Phones");
+            tableOptions.Items.Add("Manufacturers");
+            tableOptions.Items.Add("Users");
         }
     }
 }

@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:HAXEMJ_SZTGUI2022232.WpfClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
 </Application>

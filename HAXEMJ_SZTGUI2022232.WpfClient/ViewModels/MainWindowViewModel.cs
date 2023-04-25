@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace HAXEMJ_SZTGUI2022232.WpfClient
+namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
@@ -20,7 +20,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
         public Phone SelectedPhone
         {
             get { return selectedPhone; }
-            set 
+            set
             {
                 if (value != null)
                 {
@@ -34,6 +34,15 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
                 }
             }
         }
+
+        private string selectedTable;
+
+        public string SelectedTable
+        {
+            get { return selectedTable; }
+            set { SetProperty(ref selectedTable, value); }
+        }
+
 
         public ICommand CreatePhoneCommand { get; set; }
         public ICommand DeletePhoneCommand { get; set; }
@@ -53,7 +62,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             {
                 Phones = new RestCollection<Phone>("http://localhost:29971/", "phone");
                 CreatePhoneCommand = new RelayCommand(
-                    () => Phones.Add(new Phone() { Name = SelectedPhone?.Name})
+                    () => Phones.Add(new Phone() { Name = SelectedPhone?.Name })
                 );
 
                 DeletePhoneCommand = new RelayCommand(
