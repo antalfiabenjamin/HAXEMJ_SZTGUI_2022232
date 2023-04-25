@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HAXEMJ_SZTGUI2022232.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Device Manager Client" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Phones}" SelectedItem="{Binding SelectedPhone}" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="{Binding PhoneId}"/>
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
+        <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1">
+                <TextBox Text="{Binding SelectedPhone.Name}"  Padding="10" Margin="5"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Button Content="Create Phone" Padding="5" Margin="5" Width="200" Command="{Binding CreatePhoneCommand}"/>
+                <Button Content="Delete Phone" Padding="5" Margin="5" Width="200" Command="{Binding DeletePhoneCommand}"/>
+                <Button Content="Update Phone" Padding="5" Margin="5" Width="200" Command="{Binding UpdatePhoneCommand}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
