@@ -1,0 +1,9 @@
+﻿<Application x:Class="HAXEMJ_SZTGUI2022232.WpfClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HAXEMJ_SZTGUI2022232.WpfClient"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
