@@ -13,19 +13,19 @@ using System.Windows.Input;
 
 namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class UserTableWindowViewModel : ObservableRecipient
     {
-        public RestCollection<Phone> Items { get; set; }
-        private Phone selectedItem;
+        public RestCollection<User> Items { get; set; }
+        private User selectedItem;
 
-        public Phone SelectedItem
+        public User SelectedItem
         {
             get { return selectedItem; }
             set
             {
                 if (value != null)
                 {
-                    selectedItem = new Phone()
+                    selectedItem = new User()
                     {
                         Name = value.Name,
                         Id = value.Id,
@@ -56,13 +56,13 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
-        public MainWindowViewModel()
+        public UserTableWindowViewModel()
         {
             if (!IsInDesignMode)
             {
-                Items = new RestCollection<Phone>("http://localhost:29971/", "phone");
+                Items = new RestCollection<User>("http://localhost:29971/", "user");
                 CreateCommand = new RelayCommand(
-                    () => Items.Add(new Phone() { Name = SelectedItem?.Name })
+                    () => Items.Add(new User() { Name = SelectedItem?.Name })
                 );
 
                 DeleteCommand = new RelayCommand(
@@ -76,7 +76,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                 UpdateCommand = new RelayCommand(
                     () => Items.Update(SelectedItem)
                 );
-                SelectedItem = new Phone();
+                SelectedItem = new User();
             }
         }
     }

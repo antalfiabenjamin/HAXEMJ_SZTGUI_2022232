@@ -13,19 +13,19 @@ using System.Windows.Input;
 
 namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class ManufacturerTableWindowViewModel : ObservableRecipient
     {
-        public RestCollection<Phone> Items { get; set; }
-        private Phone selectedItem;
+        public RestCollection<Manufacturer> Items { get; set; }
+        private Manufacturer selectedItem;
 
-        public Phone SelectedItem
+        public Manufacturer SelectedItem
         {
             get { return selectedItem; }
             set
             {
                 if (value != null)
                 {
-                    selectedItem = new Phone()
+                    selectedItem = new Manufacturer()
                     {
                         Name = value.Name,
                         Id = value.Id,
@@ -56,13 +56,13 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
-        public MainWindowViewModel()
+        public ManufacturerTableWindowViewModel()
         {
             if (!IsInDesignMode)
             {
-                Items = new RestCollection<Phone>("http://localhost:29971/", "phone");
+                Items = new RestCollection<Manufacturer>("http://localhost:29971/", "manufacturer");
                 CreateCommand = new RelayCommand(
-                    () => Items.Add(new Phone() { Name = SelectedItem?.Name })
+                    () => Items.Add(new Manufacturer() { Name = SelectedItem?.Name })
                 );
 
                 DeleteCommand = new RelayCommand(
@@ -76,7 +76,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                 UpdateCommand = new RelayCommand(
                     () => Items.Update(SelectedItem)
                 );
-                SelectedItem = new Phone();
+                SelectedItem = new Manufacturer();
             }
         }
     }
