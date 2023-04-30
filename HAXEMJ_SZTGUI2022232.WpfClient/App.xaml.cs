@@ -21,6 +21,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<ITableManagerService, TableManagerWindow>()
+                    .AddSingleton<INonCrudStringService, NonCrudMethodHandler>()
                     .BuildServiceProvider()
                 );
         }

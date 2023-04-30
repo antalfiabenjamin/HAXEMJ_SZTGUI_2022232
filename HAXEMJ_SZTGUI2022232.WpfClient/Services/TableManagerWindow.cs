@@ -22,7 +22,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.Services
                     new UserTableWindow().ShowDialog();
                     break;
                 case 3:
-                    new MainWindow().ShowDialog();
+                    new NonCrudWindow().ShowDialog();
                     break;
             }
         }
