@@ -87,7 +87,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
             else
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
-                throw new ArgumentException(error.Msg);
+                throw new ArgumentException(error != null ? error.Msg : "Unknown error occured");
             }
             return items;
         }
@@ -295,16 +295,22 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
                 this.notify = new NotifyService(baseurl + hub);
                 this.notify.AddHandler<T>(type.Name + "Created", (T item) =>
                 {
-                    items.Add(item);
-                    CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        items.Add(item);
+                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                    });
                 });
                 this.notify.AddHandler<T>(type.Name + "Deleted", (T item) =>
                 {
                     var element = items.FirstOrDefault(t => t.Equals(item));
                     if (element != null)
                     {
-                        items.Remove(item);
-                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            items.Remove(item);
+                            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                        });
                     }
                     else
                     {

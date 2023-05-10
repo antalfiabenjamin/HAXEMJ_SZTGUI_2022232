@@ -71,7 +71,16 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                     () =>
                     {
                         Data.Clear();
-                        foreach (var item in service.GetPreferredColorPhones(rest.Get<Manufacturer>($"NonCrud/GetPreferredColorPhones/{InputText}")))
+                        var restData = new List<Manufacturer>();
+                        try
+                        {
+                            restData = rest.Get<Manufacturer>($"NonCrud/GetPreferredColorPhones/{InputText}");
+                        } catch (ArgumentException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                        foreach (var item in service.GetPreferredColorPhones(restData))
                         {
                             Data.Add(item);
                         }
@@ -104,7 +113,18 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
                     () =>
                     {
                         Data.Clear();
-                        foreach (var item in service.GetPhonesBySpecificLocation(rest.Get<Phone>($"NonCrud/PhonesBySpecificLocation/{InputText}")))
+                        var restData = new List<Phone>();
+                        try
+                        {
+                            restData = rest.Get<Phone>($"NonCrud/PhonesBySpecificLocation/{InputText}");
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+
+                        foreach (var item in service.GetPhonesBySpecificLocation(restData))
                         {
                             Data.Add(item);
                         }

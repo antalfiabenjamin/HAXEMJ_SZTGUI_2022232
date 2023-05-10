@@ -60,7 +60,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Items = new RestCollection<Manufacturer>("http://localhost:29971/", "manufacturer");
+                Items = new RestCollection<Manufacturer>("http://localhost:29971/", "manufacturer", "hub");
                 CreateCommand = new RelayCommand(
                     () => Items.Add(new Manufacturer() { Name = SelectedItem?.Name })
                 );

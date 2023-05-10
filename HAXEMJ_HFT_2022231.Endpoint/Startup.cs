@@ -1,3 +1,4 @@
+using HAXEMJ_HFT_2022231.Endpoint.Services;
 using HAXEMJ_HFT_2022231.Logic.Classes;
 using HAXEMJ_HFT_2022231.Logic.Interfaces;
 using HAXEMJ_HFT_2022231.Models;
@@ -44,6 +45,8 @@ namespace HAXEMJ_HFT_2022231.Endpoint
             services.AddTransient<IUserLogic, UserLogic>();
             services.AddTransient<IManufacturerLogic, ManufacturerLogic>();
 
+            services.AddSignalR();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -78,6 +81,7 @@ namespace HAXEMJ_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

@@ -60,7 +60,7 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Items = new RestCollection<User>("http://localhost:29971/", "user");
+                Items = new RestCollection<User>("http://localhost:29971/", "user", "hub");
                 CreateCommand = new RelayCommand(
                     () => Items.Add(new User() { Name = SelectedItem?.Name })
                 );
