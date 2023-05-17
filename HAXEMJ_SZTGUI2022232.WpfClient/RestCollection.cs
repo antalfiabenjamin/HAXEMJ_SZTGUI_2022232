@@ -295,22 +295,16 @@ namespace HAXEMJ_SZTGUI2022232.WpfClient
                 this.notify = new NotifyService(baseurl + hub);
                 this.notify.AddHandler<T>(type.Name + "Created", (T item) =>
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        items.Add(item);
-                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-                    });
+                    items.Add(item);
+                    CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                 });
                 this.notify.AddHandler<T>(type.Name + "Deleted", (T item) =>
                 {
                     var element = items.FirstOrDefault(t => t.Equals(item));
                     if (element != null)
                     {
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            items.Remove(item);
-                            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-                        });
+                        items.Remove(item);
+                        CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                     }
                     else
                     {

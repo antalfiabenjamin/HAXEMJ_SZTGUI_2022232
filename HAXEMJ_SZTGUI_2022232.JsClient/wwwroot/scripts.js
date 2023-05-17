@@ -29,7 +29,6 @@ async function getdata() {
         .then(x => x.json())
         .then(y => {
             phones = y;
-            //console.log(phones);
             display();
         });
 }
