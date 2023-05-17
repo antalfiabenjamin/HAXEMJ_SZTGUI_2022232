@@ -1,6 +1,8 @@
 ﻿let phones = [];
 let connection = null;
 
+let phoneIdToUpdate = -1;
+
 getdata();
 setupSignalR();
 
@@ -47,9 +49,40 @@ function display() {
     document.getElementById('resultarea').innerHTML = "";
     phones.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.id + "</td><td>" + t.name
-            + `</td><td><button type="button" onclick="remove(${t.id})">Delete</button></td></tr>`;
+            "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" +
+            `<button type="button" onclick="remove(${t.id})">Delete</button>` +
+            `<button type="button" onclick="showupdate(${t.id})">Update</button>` +
+                "</td></tr>";
     });
+}
+
+function showupdate(id) {
+    document.getElementById('phonenametoupdate').value = phones.find(t => t['id'] == id)['name'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    phoneIdToUpdate = id;
+}
+
+function update() {
+    document.getElementById('updateformdiv').style.display = 'none';
+    let name = document.getElementById('phonenametoupdate').value;
+    fetch('http://localhost:29971/phone', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                Name: name, id: phoneIdToUpdate
+            }),
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function create() {
