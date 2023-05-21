@@ -52,8 +52,8 @@ function display() {
     data.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" +
-            `<button type="button" onclick="remove(${String(t.id)})">Delete</button>` +
-            `<button type="button" onclick="showupdate(${t.id})">Update</button>` +
+            `<button type="button" onclick="remove('${t.id}')">Delete</button>` +
+            `<button type="button" onclick="showupdate('${t.id}')">Update</button>` +
                 "</td></tr>";
     });
 }
