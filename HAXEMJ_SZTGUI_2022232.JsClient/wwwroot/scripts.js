@@ -1,7 +1,9 @@
-﻿let phones = [];
+﻿let type = document.getElementById('maintitle').innerHTML;
+
+let data = [];
 let connection = null;
 
-let phoneIdToUpdate = -1;
+let itemIdToUpdate = -1;
 
 getdata();
 setupSignalR();
@@ -12,11 +14,11 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("PhoneCreated", (user, message) => {
+    connection.on(`${type}Created`, (user, message) => {
         getdata();
     });
 
-    connection.on("PhoneDeleted", (user, message) => {
+    connection.on(`${type}Deleted`, (user, message) => {
         getdata();
     });
 
@@ -27,10 +29,10 @@ function setupSignalR() {
 }
 
 async function getdata() {
-    await fetch('http://localhost:29971/phone')
+    await fetch(`http://localhost:29971/${type.toLowerCase()}/`)
         .then(x => x.json())
         .then(y => {
-            phones = y;
+            data = y;
             display();
         });
 }
@@ -47,34 +49,34 @@ async function start() {
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    phones.forEach(t => {
+    data.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" +
-            `<button type="button" onclick="remove(${t.id})">Delete</button>` +
+            `<button type="button" onclick="remove(${String(t.id)})">Delete</button>` +
             `<button type="button" onclick="showupdate(${t.id})">Update</button>` +
                 "</td></tr>";
     });
 }
 
 function showupdate(id) {
-    document.getElementById('phonenametoupdate').value = phones.find(t => t['id'] == id)['name'];
+    document.getElementById(`${type.toLowerCase()}nametoupdate`).value = data.find(t => t['id'] == id)['name'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    phoneIdToUpdate = id;
+    itemIdToUpdate = id;
 }
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
-    let name = document.getElementById('phonenametoupdate').value;
-    fetch('http://localhost:29971/phone', {
+    let name = document.getElementById(`${type.toLowerCase()}nametoupdate`).value;
+    fetch(`http://localhost:29971/${type.toLowerCase()}/`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(
             {
-                Name: name, id: phoneIdToUpdate
+                Name: name, id: itemIdToUpdate
             }),
-    })
+        })
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
@@ -86,8 +88,8 @@ function update() {
 }
 
 function create() {
-    let name = document.getElementById('phonename').value;
-    fetch('http://localhost:29971/phone', {
+    let name = document.getElementById(`${type.toLowerCase()}name`).value;
+    fetch(`http://localhost:29971/${type.toLowerCase()}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +98,7 @@ function create() {
             {
                 Name: name
             }),
-    })
+        })
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
@@ -108,7 +110,7 @@ function create() {
 }
 
 function remove(id) {
-    fetch('http://localhost:29971/phone/' + id, {
+    fetch(`http://localhost:29971/${type.toLowerCase()}/` + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

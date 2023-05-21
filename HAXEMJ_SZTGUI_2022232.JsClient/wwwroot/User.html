@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>User UI</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<h1 id="maintitle">User</h1>
+
+	<div id="formdiv">
+		<label>User Name</label>
+		<input type="text" id="username" />
+		<input type="submit" onclick="create()" />
+	</div>
+
+	<div id="updateformdiv">
+		<label>Manufacturer Name</label>
+		<input type="text" id="usernametoupdate" />
+		<input type="submit" value="Update" onclick="update()" />
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody id="resultarea">
+		</tbody>
+	</table>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+	<script src="scripts.js"></script>
+</body>
+</html>
