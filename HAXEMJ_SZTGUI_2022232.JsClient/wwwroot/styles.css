@@ -46,4 +46,7 @@ th {
 	font-weight: bold;
 }
 
-
+.noncrudbtn {
+	margin: 0 0 5px;
+	width: 20rem;
+}

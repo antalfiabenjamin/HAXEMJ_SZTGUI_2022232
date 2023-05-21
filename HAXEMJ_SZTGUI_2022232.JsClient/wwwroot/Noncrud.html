@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Noncrud</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <nav>
@@ -17,11 +18,22 @@
     <h1>Noncrud methods</h1>
 
     <ul>
-        <li>Get all of the iPhones</li>
-        <li>Get phones by specific color</li>
-        <li>Get the count of owned phones by each user</li>
-        <li>Get a breakdown of screentime by each user</li>
-        <li>Get phones by a specific location</li>
+        <li><button class="noncrudbtn" type="button" onclick="GetAlliPhones()">Get all of the iPhones</button></li>
+        <li><button class="noncrudbtn" type="button" onclick="GetPreferredColorPhones()">Get phones by specific color</button></li>
+        <li><button class="noncrudbtn" type="button" onclick="GetPhoneCountByUser()">Get the count of owned phones by each user</button></li>
+        <li><button class="noncrudbtn" type="button" onclick="GetScreenTimeBd()">Get a breakdown of screentime by each user</button></li>
+        <li><button class="noncrudbtn" type="button" onclick="PhonesBySpecificLocation()">Get phones by a specific location</button></li>
     </ul>
+
+    <input type="text" id="noncrudinput" />
+
+    <table>
+        <thead id="theadarea">        
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="noncrud.js"></script>
 </body>
 </html>
